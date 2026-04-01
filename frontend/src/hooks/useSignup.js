@@ -9,7 +9,7 @@ import { API_BASE } from "./api";
 
 
 const useSignup = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
 
   const signup = async (input) => {
