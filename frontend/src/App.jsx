@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import LandingPage from "./pages/LandingPage";
 import { Toaster } from "@/components/ui/sonner";
 import "./App.css";
+import Home from "./pages/Home";
 
 const GoogleAuthWrapperLogin = () => {
   return (
@@ -46,6 +47,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<GoogleAuthWrapperLogin />} />
           <Route path="/signup" element={<GoogleAuthWrapperSignUp />} />
           <Route path="*" element={<Navigate to="/" />} />
