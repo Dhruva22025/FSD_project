@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 6
   },
+  rating: {
+    type: Number,
+    default: 1000,
+  },
   googleId: {
     type: String,
     unique: true,

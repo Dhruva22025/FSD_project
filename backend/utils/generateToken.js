@@ -5,11 +5,11 @@ const generateTokenAndSetcookie = (userId, res)=>{
         expiresIn: '15d'
     });
 
-    res.cookie("jwt",token,{
+    res.cookie("jwt", token, {
         maxAge: 15 * 24 * 60 * 60 * 1000, // MS
-        httpOnly: true, // prevent XSS attacks cross-site scripting attacks
-        secure: process.env.NODE_ENV !== "development",
-        sameSite:"strict", // CRSF attacks cross-site request forgery attacks
+        httpOnly: true, // prevent XSS attacks
+        secure: true, // required for SameSite=None in modern browsers
+        sameSite: "none", // allow cross-site cookie sharing between localhost ports
     });
     return token;
 };

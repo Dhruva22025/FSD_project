@@ -3,8 +3,9 @@ dotenv.config(); // <-- Must come before any imports that use process.env
 
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import authRoutes from "./routes/auth.js";
+import routes from "./routes/index.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
@@ -19,16 +20,15 @@ const isDev = process.env.NODE_ENV !== "production";
 app.use(
   cors({
     origin: isDev ? "http://localhost:5173" : `${process.env.CLIENT_URL}`,
-    // hardcoded here 
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 // Routes
-// app.use('/api', (req, res) => res.json({ message: 'Web3 OTT API is running' }));
-app.use("/api/auth", authRoutes);
+app.use("/api", routes);
 
 // file serving for production
 if (!isDev) {

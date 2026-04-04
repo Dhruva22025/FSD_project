@@ -19,6 +19,11 @@ const useLogin = () => {
         credentials: "include", // ✅ Send cookies
       });
 
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || errorData.error || "Login failed");
+      }
+
       const data = await res.json();
       console.log(data);
       if (data.error) {
