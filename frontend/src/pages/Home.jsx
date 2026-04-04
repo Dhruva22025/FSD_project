@@ -3,7 +3,7 @@ import useLogout from "@/hooks/useLogout";
 
 export default function HomePage() {
   const { authUser } = useAuthContext();
-  const logout = useLogout();
+  const {logout} = useLogout();
 
   return (
     <div className="bg-black text-white min-h-screen overflow-hidden">
