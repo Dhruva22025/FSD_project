@@ -28,24 +28,17 @@ export const signupManual = async (req, res) => {
       fullName,
       username,
       email,
-      phoneNumber,
       password,
       confirmPassword,
-      gender,
     } = req.body;
 
-    if (!fullName || !username || !email || !phoneNumber || !password || !confirmPassword || !gender) {
+    if (!fullName || !username || !email || !password || !confirmPassword) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: "Invalid email format" });
-    }
-
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(phoneNumber)) {
-      return res.status(400).json({ error: "Phone number must be exactly 10 digits" });
     }
 
     if (password !== confirmPassword) {
@@ -66,9 +59,7 @@ export const signupManual = async (req, res) => {
       fullName,
       username,
       email,
-      phoneNumber,
       password: hashedPassword,
-      gender,
     });
 
     const token = generateTokenAndSetcookie(newUser._id, res);
@@ -78,7 +69,6 @@ export const signupManual = async (req, res) => {
       fullName: newUser.fullName,
       username: newUser.username,
       email: newUser.email,
-      phoneNumber: newUser.phoneNumber,
       token
     });
   } catch (error) {
@@ -157,7 +147,6 @@ export const login = async (req, res) => {
       fullName: user.fullName,
       username: user.username,
       email: user.email,
-      phoneNumber: user.phoneNumber,
       token,
     });
   } catch (error) {
@@ -223,7 +212,6 @@ export const googleLogin = async (req, res) => {
       fullName: user.fullName || name,
       username: user.username,
       email: user.email || email,
-      phoneNumber: user.phoneNumber || "",
       token: jwtToken,
     });
   } catch (error) {

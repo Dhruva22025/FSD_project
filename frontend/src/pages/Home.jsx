@@ -1,4 +1,10 @@
+import { useAuthContext } from "@/context/AuthContext";
+import useLogout from "@/hooks/useLogout";
+
 export default function HomePage() {
+  const { authUser } = useAuthContext();
+  const logout = useLogout();
+
   return (
     <div className="bg-black text-white min-h-screen overflow-hidden">
 
@@ -8,12 +14,22 @@ export default function HomePage() {
           <h1 className="text-xl font-bold">BattleCode</h1>
 
           <div className="flex gap-4">
-            <a href="/login" className="px-4 py-2 border border-gray-700 rounded-lg hover:bg-white/10 transition">
-              Login
-            </a>
-            <a href="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500">
-              Get Started
-            </a>
+            {authUser ? (
+              <div>
+                <button onClick={logout} className="px-4 py-2 border border-gray-700 rounded-lg hover:bg-white/10 transition">
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <>
+                <a href="/login" className="px-4 py-2 border border-gray-700 rounded-lg hover:bg-white/10 transition">
+                  Login
+                </a>
+                <a href="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500">
+                  Get Started
+                </a>
+              </>
+            )}
           </div>
         </div>
       </header>
