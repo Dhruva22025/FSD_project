@@ -25,7 +25,7 @@ const useLogin = () => {
         throw new Error(data.error);
       }
 
-      localStorage.setItem("web3-ott-user", JSON.stringify(data));
+      localStorage.setItem("code-arena-user", JSON.stringify(data));
       setAuthUser(data);
       toast.success("Login successful! 🎉"); // Sonner toast for success
     } catch (error) {

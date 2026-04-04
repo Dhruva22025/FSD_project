@@ -16,7 +16,7 @@ const useLogout = () => {
             throw new Error(data.error);
         }
 
-        localStorage.removeItem("web3-ott-user");
+        localStorage.removeItem("code-arena-user");
         setAuthUser(null);
     } catch (error) {
         if (error instanceof Error) {

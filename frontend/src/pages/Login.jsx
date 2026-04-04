@@ -31,7 +31,7 @@ const Login = () => {
       const result = await backendRes.json();
       if (!backendRes.ok) throw new Error(result.error);
 
-      localStorage.setItem("web3-ott-user", JSON.stringify(result));
+      localStorage.setItem("code-arena-user", JSON.stringify(result));
       setAuthUser(result);
     } catch (err) {
       console.error("Google login failed:", err);
