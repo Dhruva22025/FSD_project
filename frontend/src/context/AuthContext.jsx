@@ -11,7 +11,7 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(() => {
     if (typeof window !== "undefined") {
-      return JSON.parse(localStorage.getItem("web3-ott-user") || "null");
+      return JSON.parse(localStorage.getItem("code-arena-user") || "null");
     }
     return null;
   });

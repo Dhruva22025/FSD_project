@@ -10,7 +10,7 @@ api.interceptors.response.use(
   response => response,
   error => {
     if (error.response?.status === 401) {
-      localStorage.removeItem("web3-ott-user");
+      localStorage.removeItem("code-arena-user");
       window.location.href = "/login";
     }
     return Promise.reject(error);
