@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config(); // <-- Must come before any imports that use process.env
 
-import videosRouter from './routes/videos.js';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -29,10 +28,7 @@ app.use(bodyParser.json());
 
 // Routes
 // app.use('/api', (req, res) => res.json({ message: 'Web3 OTT API is running' }));
-app.use('/api/videos', videosRouter);
 app.use("/api/auth", authRoutes);
-
-app.use("/uploads", express.static(path.join(__dirname, "..", process.env.UPLOAD_DIR || "uploads"))); // serve uploads FIRST
 
 // file serving for production
 if (!isDev) {
