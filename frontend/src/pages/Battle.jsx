@@ -3,11 +3,26 @@ import { useParams } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import useSubmission from "@/hooks/useSubmission"; // a hook calling /submission/submit
 import useRoom from "@/hooks/useRoom";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function Battle() {
   const { roomId } = useParams();
   const { getRoom } = useRoom();
   const { submitCode } = useSubmission();
+
+  const languages = [
+    { id: 50, name: "C" },
+    { id: 54, name: "C++" },
+    { id: 62, name: "Java" },
+    { id: 63, name: "JavaScript (Node.js)" },
+    { id: 71, name: "Python 3" },
+  ];
 
   const [room, setRoom] = useState(null);
   const [code, setCode] = useState("");
@@ -61,6 +76,21 @@ export default function Battle() {
 
         <div>
           <h3 className="font-semibold mb-2">Your Code</h3>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Select Language</label>
+            <Select value={languageId.toString()} onValueChange={(value) => setLanguageId(parseInt(value))}>
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Select a language" />
+              </SelectTrigger>
+              <SelectContent>
+                {languages.map((lang) => (
+                  <SelectItem key={lang.id} value={lang.id.toString()}>
+                    {lang.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <textarea
             rows={10}
             className="w-full p-2 bg-gray-900 rounded text-white font-mono"
