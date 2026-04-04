@@ -8,7 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import { Toaster } from "@/components/ui/sonner";
 import "./App.css";
 import Home from "./pages/Home";
-import { useAuthContext } from "./context/AuthContext";
+
 
 const GoogleAuthWrapperLogin = () => {
   return (

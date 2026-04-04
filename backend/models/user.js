@@ -9,17 +9,9 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: [/\S+@\S+\.\S+/, "Please enter a valid email address"]
   },
-  phoneNumber: {
-    type: String,
-    match: [/^\d{10}$/, "Phone number must be exactly 10 digits"]
-  },
   password: {
     type: String,
     minlength: 6
-  },
-  gender: {
-    type: String,
-    enum: ["male", "female"]
   },
   googleId: {
     type: String,

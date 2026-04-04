@@ -8,13 +8,6 @@ import { useAuthContext } from "../context/AuthContext";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useGoogleLogin } from "@react-oauth/google";
 import { API_BASE } from "@/hooks/api";
 
@@ -25,10 +18,8 @@ const SignUp = () => {
     fullName: "",
     username: "",
     email: "",
-    phoneNumber: "",
     password: "",
     confirmPassword: "",
-    gender: "",
   });
 
   const { loading, signup } = useSignup();
@@ -234,24 +225,6 @@ const SignUp = () => {
                   </div>
                   <div className="space-y-2">
                     <Label
-                      htmlFor="phoneNumber"
-                      className="text-sm font-semibold text-gray-700"
-                    >
-                      Phone Number
-                    </Label>
-                    <Input
-                      id="phoneNumber"
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      value={inputs.phoneNumber}
-                      onChange={(e) =>
-                        setInputs({ ...inputs, phoneNumber: e.target.value })
-                      }
-                      className="rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 transition-all duration-200"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label
                       htmlFor="password"
                       className="text-sm font-semibold text-gray-700"
                     >
@@ -286,28 +259,7 @@ const SignUp = () => {
                       className="rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 transition-all duration-200"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="gender"
-                      className="text-sm font-semibold text-gray-700"
-                    >
-                      Gender
-                    </Label>
-                    <Select
-                      value={inputs.gender}
-                      onValueChange={(value) =>
-                        setInputs({ ...inputs, gender: value })
-                      }
-                    >
-                      <SelectTrigger className="w-full rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20">
-                        <SelectValue placeholder="Select Gender" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="male">Male</SelectItem>
-                        <SelectItem value="female">Female</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                 
                 </div>
 
                 {/* Login Link */}

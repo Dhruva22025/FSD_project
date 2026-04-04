@@ -49,23 +49,16 @@ function handleInputErrors({
   fullName,
   username,
   email,
-  phoneNumber,
   password,
   confirmPassword,
-  gender,
-}){
-  if (!fullName || !username || !email || !phoneNumber || !password || !confirmPassword || !gender) {
+  }){
+  if (!fullName || !username || !email || !password || !confirmPassword) {
     toast.error("Please fill in all fields");
     return false;
   }
 
   if (!/\S+@\S+\.\S+/.test(email)) {
     toast.error("Invalid email format");
-    return false;
-  }
-
-  if (!/^\d{10}$/.test(phoneNumber)) {
-    toast.error("Phone number must be 10 digits");
     return false;
   }
 
