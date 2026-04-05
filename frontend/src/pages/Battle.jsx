@@ -212,7 +212,6 @@ export default function Battle() {
             {isWinnerYou(winner, authUser)
               ? "You won this round!"
               : `Winner: ${winner}`
-
             }
           </span>
         </div>
@@ -221,7 +220,11 @@ export default function Battle() {
       <div className="min-h-0 flex-1">
         <Allotment>
           <Allotment.Pane minSize={260} preferredSize="44%">
-            <ProblemPanel problem={problem} testCases={testCases} />
+            <ProblemPanel
+              problem={problem}
+              testCases={testCases}
+              roomId={roomId}
+            />
           </Allotment.Pane>
           <Allotment.Pane minSize={320}>
             <Allotment vertical>
@@ -508,19 +511,71 @@ export default function Battle() {
   );
 }
 
-function ProblemPanel({ problem, testCases }) {
+function ProblemPanel({ problem, testCases, roomId }) {
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden border-r border-[#3e3e42] bg-[#1e1e1e]">
       <div className="shrink-0 border-b border-[#3e3e42] px-4 py-3">
-        <h1 className="text-lg font-semibold text-[#e8eaed]">{problem.title}</h1>
-        <p className="mt-1 text-xs text-[#8c8c8c]">
-          {testCases.length} testcase{testCases.length === 1 ? "" : "s"}
-        </p>
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-lg font-semibold text-[#e8eaed]">
+              {problem.title}
+            </h1>
+            <p className="mt-1 text-xs text-[#8c8c8c]">
+              {testCases.length} testcase{testCases.length === 1 ? "" : "s"}
+            </p>
+          </div>
+          <Link
+            to={`/leaderboard/${roomId}`}
+            className="shrink-0 pt-0.5 text-sm font-medium text-[#ffa116] hover:text-[#ffb84d] hover:underline"
+          >
+            Leaderboard
+          </Link>
+        </div>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4">
         <p className="whitespace-pre-wrap text-[15px] leading-relaxed text-[#cccccc]">
           {problem.description}
         </p>
+
+        {testCases.length > 0 && (
+          <div className="mt-8 border-t border-[#3e3e42] pt-6">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-[#8c8c8c]">
+              Test cases
+            </h2>
+            <p className="mt-1 text-xs text-[#6e6e6e]">
+              Same samples as in the editor panel; shown here for quick reference.
+            </p>
+            <ul className="mt-4 space-y-5">
+              {testCases.map((tc, idx) => (
+                <li key={idx}>
+                  <div className="mb-2 text-xs font-medium text-[#e8eaed]">
+                    Case {idx + 1}
+                  </div>
+                  <div className="space-y-2 font-mono text-sm">
+                    <div>
+                      <div className="mb-1 text-xs font-sans text-[#8c8c8c]">
+                        Input
+                      </div>
+                      <pre className="whitespace-pre-wrap rounded border border-[#3e3e42] bg-[#252526] p-3 text-[#d4d4d4]">
+                        {String(tc.input ?? "")}
+                      </pre>
+                    </div>
+                    {tc.output != null && tc.output !== "" && (
+                      <div>
+                        <div className="mb-1 text-xs font-sans text-[#8c8c8c]">
+                          Expected output
+                        </div>
+                        <pre className="whitespace-pre-wrap rounded border border-[#3e3e42] bg-[#252526] p-3 text-[#d4d4d4]">
+                          {String(tc.output)}
+                        </pre>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
