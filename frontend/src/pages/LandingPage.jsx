@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function LandingPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-black text-white overflow-x-hidden">
@@ -40,12 +42,12 @@ export default function LandingPage() {
           </p>
 
           <div className="mt-10 flex justify-center gap-4">
-            <a className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl font-semibold hover:scale-105 transition">
+            <Link to="/login" className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl font-semibold hover:scale-105 transition cursor-pointer">
               Start Battle ⚔️
-            </a>
-            <a className="px-6 py-3 border border-gray-700 rounded-xl hover:bg-white/10 transition">
+            </Link>
+            <Link to="/home" className="px-6 py-3 border border-gray-700 rounded-xl hover:bg-white/10 transition cursor-pointer">
               Explore Platform
-            </a>
+            </Link>
           </div>
         </div>
       </section>
