@@ -1,12 +1,9 @@
-import Navbar from "@/components/layout/Navbar";
 import CreateRoom from "@/components/rooms/CreateRoom";
 import JoinRoom from "@/components/rooms/JoinRoom";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
-
+    <div className="min-h-screen w-full bg-black text-white">
       <div className="max-w-5xl mx-auto px-6 py-10">
         {/* Header */}
         <div className="mb-10">

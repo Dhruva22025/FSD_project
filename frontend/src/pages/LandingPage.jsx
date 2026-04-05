@@ -1,25 +1,9 @@
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-
-      {/* 🔥 NAVBAR */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <h1 className="text-xl font-bold">BattleCode</h1>
-
-          <div className="flex gap-4">
-            <a href="/login" className="px-4 py-2 border border-gray-700 rounded-lg hover:bg-white/10 transition">
-              Login
-            </a>
-            <a href="/register" className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 hover:opacity-90">
-              Get Started
-            </a>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-[calc(100vh-4rem)] bg-black text-white overflow-x-hidden">
 
       {/* 🔥 HERO SECTION */}
-      <section className="relative flex items-center justify-center min-h-screen text-center px-6">
+      <section className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] text-center px-6">
 
         {/* 🌈 Animated background blobs */}
         <div className="absolute inset-0 overflow-hidden">

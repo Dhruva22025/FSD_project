@@ -66,7 +66,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex justify-center items-center p-4 sm:p-6 md:p-10 overflow-hidden bg-gradient-to-br">
+    <div className="min-h-[calc(100vh-4rem)] w-full flex justify-center items-center p-4 sm:p-6 md:p-10 overflow-hidden bg-gradient-to-br">
       <div className="w-full max-w-md">
         {/* Main Card Container */}
         <div className="w-full backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 overflow-hidden">

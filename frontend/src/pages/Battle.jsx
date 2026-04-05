@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "@/components/layout/Navbar";
 import useSubmission from "@/hooks/useSubmission"; // a hook calling /submission/submit
 import useRoom from "@/hooks/useRoom";
 import {
@@ -54,12 +53,23 @@ export default function Battle() {
     setWinner(res.winner);
   };
 
-  if (!room) return <div className="text-white p-6">Loading...</div>;
-  if (error) return <div className="text-red-500 p-6">{error}</div>;
+  if (!room) {
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center bg-black text-white">
+        Loading...
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center bg-black p-6 text-red-400">
+        {error}
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
+    <div className="min-h-screen w-full bg-black text-white">
       <div className="max-w-4xl mx-auto px-6 py-10 space-y-6">
 
         <h2 className="text-2xl font-bold">{room.problem.title}</h2>

@@ -45,7 +45,7 @@ const Login = () => {
   });
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-[calc(100vh-4rem)] bg-black text-white flex items-center justify-center px-4 py-8 relative overflow-hidden">
 
       {/* 🌈 Background Glow */}
       <div className="absolute inset-0">

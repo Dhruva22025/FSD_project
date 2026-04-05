@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useRoom from "@/hooks/useRoom";
-import Navbar from "@/components/layout/Navbar";
-
 export default function Room() {
     const { roomId } = useParams();
     const { getRoom, startRoom, setProblem } = useRoom();
@@ -74,12 +72,23 @@ export default function Room() {
         });
     };
 
-    if (error) return <div className="text-white p-6">✖ {error}</div>;
-    if (!room) return <div className="text-white p-6">Loading...</div>;
+    if (error) {
+        return (
+            <div className="flex min-h-screen w-full items-center justify-center bg-black p-6 text-red-400">
+                ✖ {error}
+            </div>
+        );
+    }
+    if (!room) {
+        return (
+            <div className="flex min-h-screen w-full items-center justify-center bg-black text-white">
+                Loading...
+            </div>
+        );
+    }
 
     return (
-        <div className="min-h-screen bg-black text-white">
-            <Navbar />
+        <div className="min-h-screen w-full bg-black text-white">
             <div className="max-w-4xl mx-auto px-6 py-10">
                 <h2 className="text-2xl font-bold mb-4">Room Code: {room.roomCode}</h2>
 

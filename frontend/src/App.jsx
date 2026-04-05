@@ -1,5 +1,5 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { Navigate, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route, Outlet } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { useAuthContext } from "./context/AuthContext";
@@ -10,7 +10,19 @@ import "./App.css";
 import Home from "./pages/Home";
 import Battle from "./pages/Battle";
 import Room from "./pages/Room";
-import Leaderboard from "./pages/Leaderboard"
+import Leaderboard from "./pages/Leaderboard";
+import Navbar from "@/components/layout/Navbar";
+
+function AppLayout() {
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-black text-white">
+      <Navbar />
+      <main className="min-h-0 w-full flex-1 pt-16">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
 
 const GoogleAuthWrapperLogin = () => {
   return (
@@ -33,32 +45,28 @@ function App() {
 
   return (
     <div>
-      {authUser ? (
-
-        <div className="flex min-h-screen w-full">
-          <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 lg:px-6">
-          </header>
-          <main className="flex-1 p-4 lg:p-6">
-            <Routes>
-              <Route path="/login" element={<Navigate to={"/home"} />} />
-              <Route path="/signup" element={<Navigate to={"/home"} />} />
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<LandingPage />} />
+          {authUser ? (
+            <>
+              <Route path="/login" element={<Navigate to="/home" replace />} />
+              <Route path="/signup" element={<Navigate to="/home" replace />} />
               <Route path="/home" element={<Home />} />
               <Route path="/room/:roomId" element={<Room />} />
               <Route path="/battle/:roomId" element={<Battle />} />
               <Route path="/leaderboard/:roomId" element={<Leaderboard />} />
-              <Route path="/" element={<LandingPage />} />
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-        </div>
-      ) : (
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<GoogleAuthWrapperLogin />} />
-          <Route path="/signup" element={<GoogleAuthWrapperSignUp />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      )}
+            </>
+          ) : (
+            <>
+              <Route path="/login" element={<GoogleAuthWrapperLogin />} />
+              <Route path="/signup" element={<GoogleAuthWrapperSignUp />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </>
+          )}
+        </Route>
+      </Routes>
       <Toaster position="top-right" richColors />
     </div>
   );

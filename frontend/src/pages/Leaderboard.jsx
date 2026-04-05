@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "@/hooks/api";
-import Navbar from "@/components/layout/Navbar";
 
 export default function Leaderboard() {
   const { roomId } = useParams();
@@ -22,11 +21,16 @@ export default function Leaderboard() {
     fetchLeaderboard();
   }, [roomId]);
 
-  if (loading) return <div className="text-white p-6">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center bg-black text-white">
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
+    <div className="min-h-screen w-full bg-black text-white">
       <div className="max-w-4xl mx-auto px-6 py-10">
         <h2 className="text-2xl font-bold mb-6">Leaderboard</h2>
         {subs.length === 0 && <p>No correct submissions yet.</p>}
